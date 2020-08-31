@@ -36,7 +36,7 @@
           src="https://i.pinimg.com/originals/9f/b1/25/9fb125f1fedc8cc62ab5b20699ebd87d.gif"
           width="55px"
           height="55px"
-        >
+        />
       </VueElementLoading>
       <span>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id fermentum quam. Proin sagittis,
@@ -54,7 +54,7 @@
       </span>
     </div>
     <div class="f-left-w-100pct">
-      <br>
+      <br />
       <div>
         <select v-model="spinnerKind">
           <option value="bar-fade-scale">bar-fade-scale</option>
@@ -91,12 +91,7 @@
           <option value="bigNeonGreen">Big Neon Green</option>
         </select>
       </div>
-      <input
-        v-model="text"
-        class="btn-toggle"
-        type="text"
-        placeholder="Custom text..."
-      />
+      <input v-model="text" class="btn-toggle" type="text" placeholder="Custom text..." />
     </div>
     <div class="f-left-w-100pct">
       <div class="btn-toggle">
@@ -116,53 +111,62 @@
 </template>
 
 <script>
-// import VueElementLoading from '../src'
-import VueElementLoading from '../lib/vue-element-loading.min.js'
+import VueElementLoading from "../lib/kod-loader.min.js";
 
 export default {
-  name: 'app',
-  data () {
+  name: "app",
+  data() {
     return {
       textStyles: {
-          none: {},
-          bold: {'font-weight':'bold'},
-          bigNeonGreen : { 'font-size':'300%', color:'#0F0', 'text-shadow':'0 0 1em #0F0' }
+        none: {},
+        bold: { "font-weight": "bold" },
+        bigNeonGreen: {
+          "font-size": "300%",
+          color: "#0F0",
+          "text-shadow": "0 0 1em #0F0"
+        }
       },
-      text: '',
+      text: "",
       show: true,
       fullscreen: false,
       fullscreenGreenBg: false,
       pikachu: false,
-      spinnerKind: 'bar-fade-scale',
-      spinnerColor: '#FF6700',
-      spinnerSize: '32',
-      spinnerDuration: '0.6',
-      spinnerTextStyle: 'none'
-    }
+      spinnerKind: "spinner",
+      spinnerColor: "#FF6700",
+      spinnerSize: "32",
+      spinnerDuration: "0.6",
+      spinnerTextStyle: "none"
+    };
   },
-  created () {
-    setTimeout(() => { this.show = false }, 2000)
+  created() {
+    setTimeout(() => {
+      this.show = false;
+    }, 2000);
   },
   methods: {
-    toggleInsideComponentLoader () {
+    toggleInsideComponentLoader() {
       this.show = !this.show;
       this.pikachu = false;
     },
-    togglePikachuLoader () {
+    togglePikachuLoader() {
       this.pikachu = !this.pikachu;
       this.show = false;
     },
-    activateFullScreen () {
-      this.fullscreen = true
-      setTimeout(() => { this.fullscreen = false }, 2000)
+    activateFullScreen() {
+      this.fullscreen = true;
+      setTimeout(() => {
+        this.fullscreen = false;
+      }, 2000);
     },
-    activateFullScreenGreenBg () {
-      this.fullscreenGreenBg = true
-      setTimeout(() => { this.fullscreenGreenBg = false }, 2000)
+    activateFullScreenGreenBg() {
+      this.fullscreenGreenBg = true;
+      setTimeout(() => {
+        this.fullscreenGreenBg = false;
+      }, 2000);
     }
   },
   components: { VueElementLoading }
-}
+};
 </script>
 
 <style scoped>

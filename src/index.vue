@@ -9,48 +9,38 @@
     >
       <div class="velmld-spinner">
         <slot name="default">
-          <component
-            :is="spinner"
-            :color="color"
-            :size="`${size}px`"
-            :duration="`${duration}s`"
-          />
+          <component :is="spinner" :size="`${size}px`" :duration="`${duration}s`" />
         </slot>
-        <div
-          v-if="text.length"
-          :style="{ color, ...textStyle }"
-        >
-          {{ text }}
-        </div>
+        <div v-if="text.length" :style="{ color, ...textStyle }">{{ text }}</div>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import Loaders from './loaders'
+import Loaders from "./loaders";
 
 export default {
-  name: 'vue-element-loading',
+  name: "kod-loader",
   props: {
     active: Boolean,
     spinner: {
       type: String,
-      default: 'spinner'
+      default: "spinner"
     },
     text: {
       type: String,
-      default: ''
+      default: ""
     },
     textStyle: {
       type: Object,
-      default: function () {
-        return {}
+      default: function() {
+        return {};
       }
     },
     color: {
       type: String,
-      default: '#000'
+      default: "#000"
     },
     isFullScreen: {
       type: Boolean,
@@ -58,45 +48,45 @@ export default {
     },
     backgroundColor: {
       type: String,
-      default: 'rgba(255, 255, 255, .9)'
+      default: "rgba(255, 255, 255, .9)"
     },
     size: {
       type: String,
-      default: '40'
+      default: "40"
     },
     duration: {
       type: String,
-      default: '0.6'
+      default: "0.6"
     },
     delay: {
       type: [String, Number],
       default: 0
     }
   },
-  data () {
+  data() {
     return {
       isActive: this.active || false,
       isActiveDelay: false
-    }
+    };
   },
   /**
    * Append class 'velmld-parent' to parent container.
    */
-  mounted () {
-    this.$refs.velmld.parentNode.classList.add('velmld-parent')
+  mounted() {
+    this.$refs.velmld.parentNode.classList.add("velmld-parent");
 
     if (this.delay) {
-      const delayMs = (+this.delay) * 1000
-      this.delayActive(delayMs)
+      const delayMs = +this.delay * 1000;
+      this.delayActive(delayMs);
     }
   },
   methods: {
-    delayActive (ms) {
-      this.isActiveDelay = true
+    delayActive(ms) {
+      this.isActiveDelay = true;
 
       setTimeout(() => {
-        this.isActiveDelay = false  
-      }, ms)
+        this.isActiveDelay = false;
+      }, ms);
     }
   },
   watch: {
@@ -104,22 +94,24 @@ export default {
      * Binding outside component value and inside component value.
      * Append class 'velmld-parent' to parent container.
      */
-    active (value) {
-      this.isActive = value
+    active(value) {
+      this.isActive = value;
       if (value) {
-        this.$refs.velmld.parentNode.classList.add('velmld-parent')
+        this.$refs.velmld.parentNode.classList.add("velmld-parent");
       }
     }
   },
   components: Loaders
-}
+};
 </script>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 .velmld-overlay {
@@ -130,14 +122,14 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 .velmld-spinner {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  text-align: center
+  text-align: center;
 }
 .velmld-full-screen {
   position: fixed;
